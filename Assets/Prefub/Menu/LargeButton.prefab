@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 4273468764451154163}
   - component: {fileID: 4273468764451154162}
   - component: {fileID: 6892396322504080387}
+  - component: {fileID: 4653355643151558250}
   - component: {fileID: 4273468764451154161}
   m_Layer: 5
   m_Name: LargeButton
@@ -210,11 +211,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isEventAfterSecondExist: 1
-  _isDisableAfterActivation: 1
   _timeOfEventActivation: 1
   _onClickAfterAWhile:
     m_PersistentCalls:
       m_Calls: []
+  _isDisableAfterActivation: 1
+--- !u!114 &4653355643151558250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4273468764451154175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e609acb9c5852142856575c62da5bbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &4273468764451154161
 Animator:
   serializedVersion: 3

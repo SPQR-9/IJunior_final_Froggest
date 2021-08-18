@@ -4,14 +4,13 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class PlayerMover : MonoBehaviour
 {
-    private Rigidbody2D _rigidbody;
-    private SpriteRenderer _sprite;
-    private bool _jumpPermission;
-    private float _oldTransformPositionY;
-    private Animator _animator;
-    private bool _pause = false;
+    public event UnityAction Jumped;
+    public event UnityAction Fall;
+    public event UnityAction Landing;
 
     [SerializeField] private Player _player;
     [SerializeField] private Target _target;
@@ -19,32 +18,36 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private float _minJumpForceY;
     [SerializeField] private float _maxJumpForceY;
     [SerializeField] private float _rateOfChangeJumpForce;
-    [SerializeField] private Slider _slider;
+    [SerializeField] private Slider _forceJumpSlider;
+
+    private Rigidbody2D _rigidbody;
+    private SpriteRenderer _sprite;
+    private bool _jumpPermission;
+    private bool _pause = false;
+
+    public bool JumpPermission => _jumpPermission;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _sprite = GetComponent<SpriteRenderer>();
-        _animator = GetComponent<Animator>();
-        _slider.minValue = _minJumpForceY;
-        _slider.maxValue = _maxJumpForceY;
-        _oldTransformPositionY = transform.position.y;
+        _forceJumpSlider.minValue = _minJumpForceY;
+        _forceJumpSlider.maxValue = _maxJumpForceY;
     }
 
     private void OnEnable()
     {
-        _player.IsDie += StartDeathAnimation;
+        _player.Died += DisableGravity;
     }
 
     private void OnDisable()
     {
-        _player.IsDie -= StartDeathAnimation;
+        _player.Died -= DisableGravity;
     }
 
-    private void StartDeathAnimation()
+    private void DisableGravity()
     {
         _rigidbody.bodyType = RigidbodyType2D.Static;
-        _animator.SetTrigger("die");
     }
 
     private void Update()
@@ -58,26 +61,25 @@ public class PlayerMover : MonoBehaviour
             _sprite.flipX = true;
         if(Input.GetKey(KeyCode.Space) && _jumpPermission == true)
         {
-            _slider.value += Time.deltaTime * _rateOfChangeJumpForce;
+            _forceJumpSlider.value += Time.deltaTime * _rateOfChangeJumpForce;
         }
         if(Input.GetKeyUp(KeyCode.Space) && _jumpPermission == true)
         {
             _jumpPermission = false;
-            _rigidbody.AddForce(new Vector2(targetDirection.x * _force, _slider.value * _force), ForceMode2D.Impulse);
-            _animator.SetBool("onGround", false);
-            _slider.value = _slider.minValue;
-        }
-        if(_jumpPermission == false)
-        {
-            if (_oldTransformPositionY > transform.position.y)
-                _animator.SetTrigger("flyingDown");
-            _oldTransformPositionY = transform.position.y;
+            _rigidbody.AddForce(new Vector2(targetDirection.x * _force, _forceJumpSlider.value * _force), ForceMode2D.Impulse);
+            Jumped?.Invoke();
+            _forceJumpSlider.value = _forceJumpSlider.minValue;
         }
     }
 
-    public void DisableMover(bool isPause)
+    public void DisableMover()
     {
-        _pause = isPause;
+        _pause = true;
+    }
+
+    public void EnableMover()
+    {
+        _pause = false;
     }
 
     private void DisableInertia()
@@ -91,7 +93,7 @@ public class PlayerMover : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out Ground _))
         {
             DisableInertia();
-            _animator.SetBool("onGround",true);
+            Landing?.Invoke();
             _jumpPermission = true;
         }
     }
@@ -100,8 +102,7 @@ public class PlayerMover : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out Ground _) && _jumpPermission == true)
         {
-            _animator.SetTrigger("fall");
-            _animator.SetBool("onGround", false);
+            Fall?.Invoke();
             _jumpPermission = false;
         }
     }

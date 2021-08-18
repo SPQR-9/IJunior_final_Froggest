@@ -1,25 +1,25 @@
 ﻿using UnityEngine;
 using IJunior.TypedScenes;
 
-public class GameSceneManager : MonoBehaviour,ISceneLoadHandler<Global>
+public class GameSceneManager : MonoBehaviour,ISceneLoadHandler<DataBase>
 {
-    private Global _global;
-
     [SerializeField] private int _numberLevel;
 
-    public void OnSceneLoaded(Global global)
+    private DataBase _data;
+
+    public void OnSceneLoaded(DataBase data)
     {
-        _global = global;
+        _data = data;
     }
 
     private void Start()
     {
-        _global.CheckingLevelOnRegisteredEvaluation(_numberLevel);
+        _data.CheckingLevelOnRegisteredEvaluation(_numberLevel);
     }
 
     public void EnterEvaluation(int evaluation)
     {
-        _global.ChangeEvaluation(_numberLevel, evaluation);
+        _data.ChangeEvaluation(_numberLevel, evaluation);
     }
 
     public void ReloadScene()
@@ -27,13 +27,13 @@ public class GameSceneManager : MonoBehaviour,ISceneLoadHandler<Global>
         switch (_numberLevel)
         {
             case 1:
-                Game1.Load(_global);
+                Game1.Load(_data);
                 break;
             case 2:
-                Game2.Load(_global);
+                Game2.Load(_data);
                 break;
             case 3:
-                Game3.Load(_global);
+                Game3.Load(_data);
                 break;
             default:
                 Debug.LogError("Error loader");
@@ -43,12 +43,12 @@ public class GameSceneManager : MonoBehaviour,ISceneLoadHandler<Global>
 
     public void SaveAndExitGame()
     {
-        _global.SaveOptions();
+        _data.SaveOptions();
         Application.Quit();
     }
 
     public void ReturnToMenu()
     {
-        Menu.Load(_global);
+        Menu.Load(_data);
     }
 }

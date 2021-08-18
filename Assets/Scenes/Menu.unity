@@ -1468,6 +1468,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1601597061378807921, guid: d483938c6d6e79745a3f9af46275dd35,
         type: 3}
+      propertyPath: _isDisableAfterActivation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1601597061378807921, guid: d483938c6d6e79745a3f9af46275dd35,
+        type: 3}
       propertyPath: _onClickAfterAWhile.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}

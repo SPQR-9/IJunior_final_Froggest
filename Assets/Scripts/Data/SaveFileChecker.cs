@@ -3,21 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using IJunior.TypedScenes;
 
-public class InitialCheckSaveFile : MonoBehaviour
+public class SaveFileChecker : MonoBehaviour
 {
-    [SerializeField] private Global _global; 
-    public void Awake()
+    [SerializeField] private DataBase _data; 
+
+    private void Awake()
+    {
+        CheckSaveFile();
+        Menu.Load(_data);
+    }
+
+    private void CheckSaveFile()
     {
         if (!PlayerPrefs.HasKey("DataFrog"))
         {
             Debug.Log("Create new save file");
-            _global.SaveOptions();
+            _data.SaveOptions();
         }
         else
         {
             Debug.Log("Load old file");
-            _global.LoadOptions();
+            _data.LoadOptions();
         }
-        Menu.Load(_global);
     }
 }

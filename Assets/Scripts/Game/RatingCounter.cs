@@ -14,23 +14,23 @@ public class RatingCounter : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.NumberOfCoinsCollected += ChangeNumberCoins;
+        _player.CoinsCollected += ChangeNumberCoins;
         _player.IsWin += SetFinalEvaluation; 
     }
 
     private void OnDisable()
     {
-        _player.NumberOfCoinsCollected -= ChangeNumberCoins;
+        _player.CoinsCollected -= ChangeNumberCoins;
         _player.IsWin -= SetFinalEvaluation;
     }
 
-    private void ChangeNumberCoins(int value)
+    private void ChangeNumberCoins()
     {
-        _coins = value;
-        SettingRating();
+        _coins = _player.GetCoinsCount();
+        SetRating();
     }
 
-    private void SettingRating()
+    private void SetRating()
     {
         _evaluation = _coins / _coinsForStar;
         Debug.Log(_coins + " / " + _coinsForStar + " = " + _evaluation);

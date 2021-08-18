@@ -68,9 +68,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 55ac05f4e55cabb488748135899b289b, type: 2}
-  m_sharedMaterial: {fileID: -8581122685250955098, guid: 55ac05f4e55cabb488748135899b289b,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -148,8 +147,9 @@ GameObject:
   - component: {fileID: 3245803637826427767}
   - component: {fileID: 3245803637826427764}
   - component: {fileID: 3245803637826427765}
-  - component: {fileID: 8250212943185260898}
   - component: {fileID: 3245803637826427761}
+  - component: {fileID: 8250212943185260898}
+  - component: {fileID: 8089112897655897929}
   m_Layer: 5
   m_Name: ExtendedButton
   m_TagString: Untagged
@@ -257,24 +257,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8250212943185260898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3245803637826427771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f14d46eb09cf32943ad955fbde824354, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isEventAfterSecondExist: 1
-  _isDisableAfterActivation: 1
-  _timeOfEventActivation: 1
-  _onClickAfterAWhile:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!95 &3245803637826427761
 Animator:
   serializedVersion: 3
@@ -294,3 +276,33 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8250212943185260898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3245803637826427771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f14d46eb09cf32943ad955fbde824354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isEventAfterSecondExist: 1
+  _timeOfEventActivation: 1
+  _onClickAfterAWhile:
+    m_PersistentCalls:
+      m_Calls: []
+  _isDisableAfterActivation: 1
+--- !u!114 &8089112897655897929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3245803637826427771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e609acb9c5852142856575c62da5bbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

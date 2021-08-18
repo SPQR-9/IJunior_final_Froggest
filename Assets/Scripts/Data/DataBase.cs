@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Global",menuName = "Create new Global file")]
-public class Global : ScriptableObject
+[CreateAssetMenu(fileName = "DataBase",menuName = "Create new DataBase file")]
+public class DataBase : ScriptableObject
 {
     private List<SceneOption> _sceneOptions = new List<SceneOption>();
 

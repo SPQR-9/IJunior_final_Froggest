@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    [SerializeField] private int value = 1;
+    [SerializeField] private int _value = 1;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out Player player))
         {
-            player.GetCoin(value);
+            player.GetCoin(_value);
             Destroy(gameObject);
         }
     }

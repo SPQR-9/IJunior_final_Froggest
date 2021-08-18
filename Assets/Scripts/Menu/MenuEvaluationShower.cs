@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
-public class ShowEvoluations : MonoBehaviour
+public class MenuEvaluationShower : MonoBehaviour
 {
     [SerializeField] private int _numberLevel;
     [SerializeField] private MenuSceneManager _menuManager;

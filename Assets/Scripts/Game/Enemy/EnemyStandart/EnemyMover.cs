@@ -13,7 +13,7 @@ public class EnemyMover : MonoBehaviour
     private Transform[] _points;
     private int _currectPointIndex = 0;
 
-    void Start()
+    private void Start()
     {
         _sprite = GetComponent<SpriteRenderer>();
         _points = new Transform[_wayPoints.childCount];
@@ -23,7 +23,7 @@ public class EnemyMover : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
         Transform target = _points[_currectPointIndex];
         transform.position = Vector3.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);

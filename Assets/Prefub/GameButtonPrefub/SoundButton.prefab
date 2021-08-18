@@ -220,8 +220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isEventAfterSecondExist: 0
-  _isDisableAfterActivation: 0
   _timeOfEventActivation: 1
+  _isDisableAfterActivation: 1
   _onClickAfterAWhile:
     m_PersistentCalls:
       m_Calls: []

@@ -3,12 +3,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
-public class ShowEvoluationOnGame : MonoBehaviour
+public class EvaluationShower : MonoBehaviour
 {
-    private Image _starImage;
-
     [SerializeField] private List<Sprite> _starSprites;
     [SerializeField] private RatingCounter _ratingCounter;
+
+    private Image _starImage;
 
     private void Awake()
     {

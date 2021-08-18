@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using IJunior.TypedScenes;
 
-public class MenuSceneManager : MonoBehaviour,ISceneLoadHandler<Global>
+public class MenuSceneManager : MonoBehaviour,ISceneLoadHandler<DataBase>
 {
-    private Global _global;
+    private DataBase _global;
     
     [SerializeField] private List<Sprite> _starSprites;
 
-    public void OnSceneLoaded(Global global)
+    public void OnSceneLoaded(DataBase global)
     {
         _global = global;
     }

@@ -7,22 +7,20 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
+    public event UnityAction Died;
+    public event UnityAction IsWin;
+    public event UnityAction CoinsCollected;
+    public event UnityAction HealthChanged;
+
     [SerializeField] private int _health;
     [SerializeField] private UnityEvent _activateAfterWin;
     [SerializeField] private UnityEvent _activateOnDisable;
-    [SerializeField] private TMP_Text _healthText;
-    [SerializeField] private TMP_Text _coinText;
 
-    public UnityAction IsDie;
-    public UnityAction IsWin;
-    public UnityAction<int> NumberOfCoinsCollected;
-
-    private int _coin;
+    private int _coins;
     private Vector2 _disablePoint;
 
     private void Start()
     {
-        _healthText.text = _health.ToString();
         _disablePoint = Camera.main.ViewportToWorldPoint(new Vector2(0.5f, 0));
     }
 
@@ -36,25 +34,35 @@ public class Player : MonoBehaviour
 
     public void GetCoin(int value)
     {
-        _coin+=value;
-        _coinText.text = _coin.ToString();
-        NumberOfCoinsCollected.Invoke(_coin);
+        _coins+=value;
+        CoinsCollected.Invoke();
+    }
+
+    public int GetCoinsCount()
+    {
+        return _coins;
+    }
+
+    public int GetHealthCount()
+    {
+        return _health;
     }
 
     public void TakeDamage(int value)
     {
         _health -= value;
-        _healthText.text = _health.ToString();
+        HealthChanged?.Invoke();
     }
 
     public void Die()
     {
-        IsDie.Invoke();
+        Died.Invoke();
     }
 
     public void Disable()
     {
-        _healthText.text = "0";
+        _health = 0;
+        HealthChanged?.Invoke();
         _activateOnDisable.Invoke();
         gameObject.SetActive(false);
     }
