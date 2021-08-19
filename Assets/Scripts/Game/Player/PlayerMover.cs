@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Player))]
 public class PlayerMover : MonoBehaviour
 {
     public event UnityAction Jumped;
     public event UnityAction Fall;
-    public event UnityAction Landing;
+    public event UnityAction Landed;
 
-    [SerializeField] private Player _player;
     [SerializeField] private Target _target;
     [SerializeField] private float _force;
     [SerializeField] private float _minJumpForceY;
@@ -20,6 +20,7 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private float _rateOfChangeJumpForce;
     [SerializeField] private Slider _forceJumpSlider;
 
+    private Player _player;
     private Rigidbody2D _rigidbody;
     private SpriteRenderer _sprite;
     private bool _jumpPermission;
@@ -27,10 +28,11 @@ public class PlayerMover : MonoBehaviour
 
     public bool JumpPermission => _jumpPermission;
 
-    private void Start()
+    private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _sprite = GetComponent<SpriteRenderer>();
+        _player = GetComponent<Player>();
         _forceJumpSlider.minValue = _minJumpForceY;
         _forceJumpSlider.maxValue = _maxJumpForceY;
     }
@@ -93,7 +95,7 @@ public class PlayerMover : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out Ground _))
         {
             DisableInertia();
-            Landing?.Invoke();
+            Landed?.Invoke();
             _jumpPermission = true;
         }
     }

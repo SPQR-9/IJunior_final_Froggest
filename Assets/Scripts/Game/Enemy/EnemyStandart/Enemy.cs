@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     private Animator _animator;
     private Collider2D _collider2D;
 
+    private const string _die = "Die";
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -22,7 +24,7 @@ public class Enemy : MonoBehaviour
         if(collision.gameObject.TryGetComponent(out Player player))
         {
             player.TakeDamage(_damage);
-            _animator.SetTrigger("Die");
+            _animator.SetTrigger(_die);
             _collider2D.enabled = false;
         }
     }

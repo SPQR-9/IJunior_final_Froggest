@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[RequireComponent(typeof(Player))]
 public class PlayerInfoShower : MonoBehaviour
 {
     [SerializeField] private TMP_Text _healthText;

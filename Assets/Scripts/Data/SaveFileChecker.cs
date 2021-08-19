@@ -5,7 +5,7 @@ using IJunior.TypedScenes;
 
 public class SaveFileChecker : MonoBehaviour
 {
-    [SerializeField] private DataBase _data; 
+    [SerializeField] private DataBase _data;
 
     private void Awake()
     {
@@ -15,7 +15,7 @@ public class SaveFileChecker : MonoBehaviour
 
     private void CheckSaveFile()
     {
-        if (!PlayerPrefs.HasKey("DataFrog"))
+        if (!PlayerPrefs.HasKey(_data.Params.DataFrog))
         {
             Debug.Log("Create new save file");
             _data.SaveOptions();

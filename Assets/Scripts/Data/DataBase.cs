@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DataBase",menuName = "Create new DataBase file")]
 public class DataBase : ScriptableObject
 {
+    public DataParams Params = new DataParams();
+
     private List<SceneOption> _sceneOptions = new List<SceneOption>();
 
     public bool IsGetEvaluation(int levelNumber,out int evaluation)
@@ -34,19 +36,19 @@ public class DataBase : ScriptableObject
 
     public void RemoveDataOptions()
     {
-        PlayerPrefs.DeleteKey("DataFrog");
+        PlayerPrefs.DeleteKey(Params.DataFrog);
     }
 
     public void SaveOptions()
     {
         SaveOptions saveData = new SaveOptions(_sceneOptions);
         string json = JsonUtility.ToJson(saveData);
-        PlayerPrefs.SetString("DataFrog", json);
+        PlayerPrefs.SetString(Params.DataFrog, json);
     }
 
     public void LoadOptions()
     {
-        _sceneOptions = JsonUtility.FromJson<SaveOptions>(PlayerPrefs.GetString("DataFrog")).getList();
+        _sceneOptions = JsonUtility.FromJson<SaveOptions>(PlayerPrefs.GetString(Params.DataFrog)).getList();
     }
 
     public void CheckingLevelOnRegisteredEvaluation(int levelNumber)
@@ -67,7 +69,6 @@ public class DataBase : ScriptableObject
         }
     }
 }
-
 
 public class SaveOptions
 {
@@ -90,4 +91,11 @@ public class SceneOption
 {
     public int NumberLevel;
     public int Evaluation;
+}
+
+public class DataParams
+{
+    private const string _dataFrog = "DataFrog";
+
+    public string DataFrog => _dataFrog;
 }

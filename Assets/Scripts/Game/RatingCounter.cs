@@ -15,13 +15,13 @@ public class RatingCounter : MonoBehaviour
     private void OnEnable()
     {
         _player.CoinsCollected += ChangeNumberCoins;
-        _player.IsWin += SetFinalEvaluation; 
+        _player.Won += SetFinalEvaluation; 
     }
 
     private void OnDisable()
     {
         _player.CoinsCollected -= ChangeNumberCoins;
-        _player.IsWin -= SetFinalEvaluation;
+        _player.Won -= SetFinalEvaluation;
     }
 
     private void ChangeNumberCoins()

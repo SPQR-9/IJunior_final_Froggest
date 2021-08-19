@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Player))]
+[RequireComponent(typeof(PlayerMover))]
 public class PlayerAnimationController : MonoBehaviour
 {
     private Animator _animator;
@@ -10,10 +12,10 @@ public class PlayerAnimationController : MonoBehaviour
     private PlayerMover _playerMover;
     private float _oldTransformPositionY;
 
-    private const string  _parameterNameFlyingDown = "flyingDown";
-    private const string _parameterNameDie = "die";
-    private const string _parameterNameOnGround = "onGround";
-    private const string _parameterNameFall = "fall";
+    private const string  _flyingDown = "flyingDown";
+    private const string _die = "die";
+    private const string _onGround = "onGround";
+    private const string _fall = "fall";
 
     private void Awake()
     {
@@ -26,7 +28,7 @@ public class PlayerAnimationController : MonoBehaviour
     private void OnEnable()
     {
         _player.Died += StartDeathAnimation;
-        _playerMover.Landing += StartLandingAnimation;
+        _playerMover.Landed += StartLandingAnimation;
         _playerMover.Fall += StartFallAnimation;
         _playerMover.Jumped += StartJumpedAnimation;
     }
@@ -34,7 +36,7 @@ public class PlayerAnimationController : MonoBehaviour
     private void OnDisable()
     {
         _player.Died -= StartDeathAnimation;
-        _playerMover.Landing -= StartLandingAnimation;
+        _playerMover.Landed -= StartLandingAnimation;
         _playerMover.Fall -= StartFallAnimation;
         _playerMover.Jumped -= StartJumpedAnimation;
     }
@@ -44,29 +46,29 @@ public class PlayerAnimationController : MonoBehaviour
         if (_playerMover.JumpPermission == false)
         {
             if (_oldTransformPositionY > transform.position.y)
-                _animator.SetTrigger(_parameterNameFlyingDown);
+                _animator.SetTrigger(_flyingDown);
             _oldTransformPositionY = transform.position.y;
         }
     }
 
     private void StartDeathAnimation()
     {
-        _animator.SetTrigger(_parameterNameDie);
+        _animator.SetTrigger(_die);
     }
 
     private void StartLandingAnimation()
     {
-        _animator.SetBool(_parameterNameOnGround, true);
+        _animator.SetBool(_onGround, true);
     }
 
     private void StartFallAnimation()
     {
-        _animator.SetTrigger(_parameterNameFall);
-        _animator.SetBool(_parameterNameOnGround, false);
+        _animator.SetTrigger(_fall);
+        _animator.SetBool(_onGround, false);
     }
 
     private void StartJumpedAnimation()
     {
-        _animator.SetBool(_parameterNameOnGround, false);
+        _animator.SetBool(_onGround, false);
     }
 }

@@ -8,7 +8,7 @@ using TMPro;
 public class Player : MonoBehaviour
 {
     public event UnityAction Died;
-    public event UnityAction IsWin;
+    public event UnityAction Won;
     public event UnityAction CoinsCollected;
     public event UnityAction HealthChanged;
 
@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
 
     public void Win()
     {
-        IsWin.Invoke();
+        Won.Invoke();
         _activateAfterWin.Invoke();
     }
 }

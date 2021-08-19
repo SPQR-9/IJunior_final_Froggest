@@ -13,10 +13,10 @@ public class ButtonAnimationController : MonoBehaviour, IPointerEnterHandler, IP
     private Button _button;
     private ButtonActivatorAfterAWhile _buttonActivatorAfterAWhile;
 
-    private const string _parameterNameOnButtonPoint = "OnButtonPoint";
-    private const string _parameterNameOnButtonClick = "OnButtonClick";
-    private const string _parameterNameDeactivate = "Deactivate";
-    private const string _parameterNameDisable = "Disable";
+    private const string _onButtonPoint = "OnButtonPoint";
+    private const string _onButtonClick = "OnButtonClick";
+    private const string _deactivate = "Deactivate";
+    private const string _disable = "Disable";
 
     private void Awake()
     {
@@ -40,27 +40,27 @@ public class ButtonAnimationController : MonoBehaviour, IPointerEnterHandler, IP
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (_button.IsInteractable())
-            _animator.SetBool(_parameterNameOnButtonPoint, true);
+            _animator.SetBool(_onButtonPoint, true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (_button.IsInteractable())
-            _animator.SetBool(_parameterNameOnButtonPoint, false);
+            _animator.SetBool(_onButtonPoint, false);
     }
 
     public void Deactivate()
     {
-        _animator.SetTrigger(_parameterNameDeactivate);
+        _animator.SetTrigger(_deactivate);
     }
 
     private void StartClickAnimation()
     {
-        _animator.SetTrigger(_parameterNameOnButtonClick);
+        _animator.SetTrigger(_onButtonClick);
     }
 
     private void StartDisableAnimation()
     {
-        _animator.SetBool(_parameterNameDisable, true);
+        _animator.SetBool(_disable, true);
     }
 }

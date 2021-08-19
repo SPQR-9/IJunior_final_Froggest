@@ -36,7 +36,7 @@ public class GameSceneManager : MonoBehaviour,ISceneLoadHandler<DataBase>
                 Game3.Load(_data);
                 break;
             default:
-                Debug.LogError("Error loader");
+                Debug.LogError("Error loader data");
                 break;
         }
     }
