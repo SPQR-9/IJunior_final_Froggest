@@ -11721,6 +11721,16 @@ PrefabInstance:
       propertyPath: _activateOnDisable.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5612470954927978094}
+    - target: {fileID: 5409684749361748128, guid: 7bf390b0aeedc624aa48682b819d961f,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5409684749361748128, guid: 7bf390b0aeedc624aa48682b819d961f,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5409684749361748129, guid: 7bf390b0aeedc624aa48682b819d961f,
         type: 3}
       propertyPath: m_RootOrder
@@ -11775,6 +11785,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5409684749361748131, guid: 7bf390b0aeedc624aa48682b819d961f,
+        type: 3}
+      propertyPath: _force
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5409684749361748131, guid: 7bf390b0aeedc624aa48682b819d961f,
         type: 3}

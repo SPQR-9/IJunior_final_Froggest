@@ -18,7 +18,7 @@ public class Parallax : MonoBehaviour
 
     private void Update()
     {
-        _imagePositionX = _playerPosition.position.x * _speed * Time.deltaTime;
+        _imagePositionX = _playerPosition.position.x * _speed;
         _image.uvRect = new Rect(_imagePositionX, 0, _image.uvRect.width, _image.uvRect.height);
     }
 }
